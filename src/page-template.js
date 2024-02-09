@@ -34,68 +34,97 @@ const generateTeam = (team) => {
 
             <!-- Custom Styles -->
             <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        background-color: #f2f2f2;
-    }
-
-    header {
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        padding: 20px 0;
-    }
-
-    main {
-        padding: 20px;
-    }
-    
-    .team-heading{
-        background: linear-gradient(to right, #ff4d4d, #ff6666); /* Gradient czerwony */
-    }
-
-    .card {
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        background-color: #fff; /* Białe tło karty */
-    }
-
-    .card-header {
-        background-color: #007bff; /* Niebieski */
-        color: #fff;
-        padding: 10px;
-        border-bottom: 1px solid #ccc;
-    }
-
-    .card-title {
-        margin: 0;
-    }
-
-    .card-body {
-        padding: 10px;
-    }
-
-    .list-group {
-        padding: 0;
-        list-style: none;
-    }
-
-    .list-group-item {
-        padding: 5px 0;
-    }
-
-    .list-group-item:first-child {
-        padding-top: 0;
-    }
-
-    .list-group-item:last-child {
-        padding-bottom: 0;
-    }
-</style>
+                body {
+                    font-family: 'Work Sans', Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    background-color: #f2f2f2;
+                }
+        
+                header {
+                    background-color: #333;
+                    color: #fff;
+                    text-align: center;
+                    padding: 20px 0;
+                }
+        
+                main {
+                    padding: 20px;
+                }
+        
+                .team-heading {
+                    background: linear-gradient(to right, #ff4d4d, #ff6666);
+                    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                    padding: 20px;
+                    border-radius: 10px;
+                    margin-bottom: 20px;
+                    color: white;
+                }
+        
+                .card {
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    margin-bottom: 20px;
+                    background-color: #fff;
+                    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+        
+                .card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+                }
+        
+                .card-header {
+                    background-color: #007bff;
+                    color: #fff;
+                    padding: 10px;
+                    border-bottom: 1px solid #ccc;
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                }
+        
+                .card-title {
+                    margin: 0;
+                }
+        
+                .card-body {
+                    padding: 10px;
+                }
+        
+                .list-group {
+                    padding: 0;
+                    list-style: none;
+                }
+        
+                .list-group-item {
+                    padding: 5px 0;
+                }
+        
+                .list-group-item:first-child {
+                    padding-top: 0;
+                }
+        
+                .list-group-item:last-child {
+                    padding-bottom: 0;
+                }
+        
+                .card-deck {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+        
+                .employee-card {
+                    margin: 10px;
+                    max-width: 300px;
+                }
+        
+                .employee-card:hover {
+                    transform: scale(1.1);
+                }
+            </style>
         </head>
 
         <body>
