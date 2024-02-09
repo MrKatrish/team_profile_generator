@@ -52,6 +52,8 @@ To use the Team Profile Generator:
 
 ![HTML Screenshot](assets/Screenshot.png)
 
+Example page you can see here: https://mrkatrish.github.io/team_profile_generator/
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
