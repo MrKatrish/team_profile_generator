@@ -34,61 +34,68 @@ const generateTeam = (team) => {
 
             <!-- Custom Styles -->
             <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f2f2f2;
+    }
 
-                header {
-                    background-color: #333;
-                    color: #fff;
-                    text-align: center;
-                    padding: 20px 0;
-                }
+    header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+    }
 
-                main {
-                    padding: 20px;
-                }
+    main {
+        padding: 20px;
+    }
+    
+    .team-heading{
+        background: linear-gradient(to right, #ff4d4d, #ff6666); /* Gradient czerwony */
+    }
 
-                .card {
-                    border: 1px solid #ccc;
-                    border-radius: 5px;
-                    margin-bottom: 20px;
-                }
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        background-color: #fff; /* Białe tło karty */
+    }
 
-                .card-header {
-                    background-color: #f0f0f0;
-                    padding: 10px;
-                    border-bottom: 1px solid #ccc;
-                }
+    .card-header {
+        background-color: #007bff; /* Niebieski */
+        color: #fff;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
 
-                .card-title {
-                    margin: 0;
-                }
+    .card-title {
+        margin: 0;
+    }
 
-                .card-body {
-                    padding: 10px;
-                }
+    .card-body {
+        padding: 10px;
+    }
 
-                .list-group {
-                    padding: 0;
-                    list-style: none;
-                }
+    .list-group {
+        padding: 0;
+        list-style: none;
+    }
 
-                .list-group-item {
-                    padding: 5px 0;
-                }
+    .list-group-item {
+        padding: 5px 0;
+    }
 
-                .list-group-item:first-child {
-                    padding-top: 0;
-                }
+    .list-group-item:first-child {
+        padding-top: 0;
+    }
 
-                .list-group-item:last-child {
-                    padding-bottom: 0;
-                }
-            </style>
+    .list-group-item:last-child {
+        padding-bottom: 0;
+    }
+</style>
         </head>
 
         <body>
