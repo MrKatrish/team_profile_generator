@@ -50,6 +50,8 @@ To use the Team Profile Generator:
 
 [DEMO.webm](https://github.com/MrKatrish/team_profile_generator/assets/111653909/176accb2-6f0f-4668-a95d-a45c8fe83448)
 
+![HTML Screenshot](assets/Screenshot.png)
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
