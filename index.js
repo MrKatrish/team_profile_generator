@@ -1,145 +1,206 @@
-const inquirer = require("inquirer");
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const render = require("./src/page-template.js");
-const path = require("path");
-const fs = require("fs");
+// Importing modules
+import('inquirer').then(({ default: inquirer }) => {
+    const Manager = require("./lib/Manager");
+    const Engineer = require("./lib/Engineer");
+    const Intern = require("./lib/Intern");
+    const path = require("path");
+    const fs = require("fs");
+    const render = require("./src/page-template.js");
 
-// Function to gather information about the development team members
-function gatherTeamInformation() {
-    // Array to store team members
-    const teamMembers = [];
+    const OUTPUT_DIR = path.resolve(__dirname, "output");
+    const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-    // Function to prompt user for manager's information
-    function promptManager() {
-        console.log("Please enter the manager's information:");
-        inquirer.prompt([
-            {
-                type: "input",
-                name: "name",
-                message: "Name:"
-            },
-            {
-                type: "input",
-                name: "id",
-                message: "Employee ID:"
-            },
-            {
-                type: "input",
-                name: "email",
-                message: "Email address:"
-            },
-            {
-                type: "input",
-                name: "officeNumber",
-                message: "Office number:"
+    // Definitions of questions for manager, employee confirmation, and employee type (Engineer or Intern)
+    const managerQuestions = [
+        {
+            type: 'input',
+            message: "Please enter the manager's name:",
+            name: 'mgrName',
+            default: 'John Doe',
+            validate: function (answer) {
+                if (answer.length < 1) {
+                    return "A valid name is required.";
+                }
+                return true;
             }
-        ]).then(answers => {
-            const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-            teamMembers.push(manager);
-            promptTeamMember();
-        });
-    }
-
-    // Function to prompt user for team member's information (Engineer or Intern)
-    function promptTeamMember() {
-        console.log("Please choose the type of team member to add or finish building the team:");
-        inquirer.prompt([
-            {
-                type: "list",
-                name: "memberType",
-                message: "Choose team member type:",
-                choices: ["Engineer", "Intern", "Finish building the team"]
+        },
+        {
+            type: 'input',
+            message: "Please enter the manager's employee ID:",
+            name: 'mgrId',
+            default: 'M001',
+            validate: function (answer) {
+                if (answer.length < 1) {
+                    return "A valid employee ID is required.";
+                }
+                return true;
             }
-        ]).then(answer => {
-            if (answer.memberType === "Engineer") {
-                promptEngineer();
-            } else if (answer.memberType === "Intern") {
-                promptIntern();
-            } else {
-                generateTeamHTML();
+        },
+        {
+            type: 'input',
+            message: "Please enter the manager's email address:",
+            name: 'mgrEmail',
+            default: 'manager@example.com',
+            validate: function (answer) {
+                if (!answer.includes('@')) {
+                    return "A valid email address is required.";
+                }
+                return true;
             }
-        });
-    }
-
-    // Function to prompt user for engineer's information
-    function promptEngineer() {
-        console.log("Please enter the engineer's information:");
-        inquirer.prompt([
-            {
-                type: "input",
-                name: "name",
-                message: "Name:"
-            },
-            {
-                type: "input",
-                name: "id",
-                message: "Employee ID:"
-            },
-            {
-                type: "input",
-                name: "email",
-                message: "Email address:"
-            },
-            {
-                type: "input",
-                name: "github",
-                message: "GitHub username:"
+        },
+        {
+            type: 'input',
+            message: "Please enter the manager's office number:",
+            name: 'mgrOffice',
+            default: '100',
+            validate: function (answer) {
+                if (answer.length < 1) {
+                    return "A valid office number is required.";
+                }
+                return true;
             }
-        ]).then(answers => {
-            const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-            teamMembers.push(engineer);
-            promptTeamMember();
-        });
-    }
-
-    // Function to prompt user for intern's information
-    function promptIntern() {
-        console.log("Please enter the intern's information:");
-        inquirer.prompt([
-            {
-                type: "input",
-                name: "name",
-                message: "Name:"
-            },
-            {
-                type: "input",
-                name: "id",
-                message: "Employee ID:"
-            },
-            {
-                type: "input",
-                name: "email",
-                message: "Email address:"
-            },
-            {
-                type: "input",
-                name: "school",
-                message: "School:"
-            }
-        ]).then(answers => {
-            const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
-            teamMembers.push(intern);
-            promptTeamMember();
-        });
-    }
-
-    // Function to generate HTML file with team information
-    function generateTeamHTML() {
-        const htmlContent = render(teamMembers);
-        // Ensure the output directory exists
-        if (!fs.existsSync(OUTPUT_DIR)) {
-            fs.mkdirSync(OUTPUT_DIR);
+        },
+    ];
+    
+    // Confirmation to Add Another Employee
+    const confirmEmployee = [
+        {
+            type: 'confirm',
+            message: "Would you like to add another team member?",
+            name: 'confirmEmp',
+            default: true
         }
-        // Write HTML content to file
-        fs.writeFileSync(outputPath, htmlContent);
-        console.log(`Team HTML file generated successfully at ${outputPath}`);
+    ];
+    
+    // Employee Type Selection
+    const employeeType = [
+        {
+            type: 'list',
+            message: "Would you like to add an Engineer or Intern to the team?",
+            choices: ['Engineer', 'Intern'],
+            name: 'empRole'
+        }
+    ];
+    
+    // Engineer Questions
+    const engineerQuestions = [
+        {
+            type: 'input',
+            message: "Please enter the engineer's name:",
+            name: 'engName',
+            default: 'Jane Smith',
+            validate: function (answer) {
+                if (answer.length < 1) {
+                    return "A valid name is required.";
+                }
+                return true;
+            }
+        },
+        {
+            type: 'input',
+            message: "Please enter the engineer's employee ID:",
+            name: 'engId',
+            default: 'E001',
+            validate: function (answer) {
+                if (answer.length < 1) {
+                    return "A valid employee ID is required.";
+                }
+                return true;
+            }
+        },
+        {
+            type: 'input',
+            message: "Please enter the engineer's email address:",
+            name: 'engEmail',
+            default: 'engineer@example.com',
+            validate: function (answer) {
+                if (!answer.includes('@')) {
+                    return "A valid email address is required.";
+                }
+                return true;
+            }
+        },
+        {
+            type: 'input',
+            message: "Please enter the engineer's GitHub username:",
+            name: 'engGithub',
+            default: 'githubuser',
+            validate: function (answer) {
+                if (answer.length < 1) {
+                    return "A valid GitHub username is required.";
+                }
+                return true;
+            }
+        }
+    ];
+    
+    // Intern Questions
+    const internQuestions = [
+        {
+            type: 'input',
+            message: "Please enter the intern's name:",
+            name: 'internName',
+            default: 'Alex Johnson',
+            validate: function (answer) {
+                if (answer.length < 1) {
+                    return "A valid name is required.";
+                }
+                return true;
+            }
+        },
+        {
+            type: 'input',
+            message: "Please enter the intern's employee ID:",
+            name: 'internId',
+            default: 'I001',
+            validate: function (answer) {
+                if (answer.length < 1) {
+                    return "A valid employee ID is required.";
+                }
+                return true;
+            }
+        },
+        {
+            type: 'input',
+            message: "Please enter the intern's email address:",
+            name: 'internEmail',
+            default: 'intern@example.com',
+            validate: function (answer) {
+                if (!answer.includes('@')) {
+                    return "A valid email address is required.";
+                }
+                return true;
+            }
+        },
+        {
+            type: 'input',
+            message: "Please enter the intern's school name:",
+            name: 'internSchool',
+            default: 'University of ABC',
+            validate: function (answer) {
+                if (answer.length < 1) {
+                    return "A valid school name is required.";
+                }
+                return true;
+            }
+        }
+    ];
+
+    // Start the process
+    function start() {
+        console.log("Please enter the manager's information:");
+        inquirer.prompt(managerQuestions)
+            .then(answers => {
+                // Here you can process the answers further
+                gatherTeamInformation();
+            })
+            .catch(error => {
+                console.error('Error occurred while prompting manager:', error);
+            });
     }
 
-    // Start by prompting for manager's information
-    promptManager();
-}
+    start(); // Start the process
 
-// Call function to gather team information
-gatherTeamInformation();
+}).catch((error) => {
+    console.error('Error loading inquirer:', error);
+});
