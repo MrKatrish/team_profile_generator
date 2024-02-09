@@ -1,12 +1,12 @@
-// creates the team
+// Function to generate the team HTML
 const generateTeam = (team) => {
-    // Sprawdzenie, czy team jest tablicą
+    // Check if team is an array
     if (!Array.isArray(team)) {
         console.error("Error: 'team' is not an array.");
         return "";
     }
 
-    // creates the manager html
+    // Function to generate HTML for managers
     const generateManager = (manager) => {
         return `
         <div class="card employee-card">
@@ -25,7 +25,7 @@ const generateTeam = (team) => {
         `;
     };
 
-    // creates the html for engineers
+    // Function to generate HTML for engineers
     const generateEngineer = (engineer) => {
         return `
         <div class="card employee-card">
@@ -44,7 +44,7 @@ const generateTeam = (team) => {
         `;
     };
 
-    // creates the html for interns
+    // Function to generate HTML for interns
     const generateIntern = (intern) => {
         return `
         <div class="card employee-card">
@@ -65,18 +65,23 @@ const generateTeam = (team) => {
 
     const html = [];
 
+    // Generate HTML for managers
     html.push(
         team
             .filter((employee) => employee.getRole() === "Manager")
             .map((manager) => generateManager(manager))
             .join("")
     );
+
+    // Generate HTML for engineers
     html.push(
         team
             .filter((employee) => employee.getRole() === "Engineer")
             .map((engineer) => generateEngineer(engineer))
             .join("")
     );
+
+    // Generate HTML for interns
     html.push(
         team
             .filter((employee) => employee.getRole() === "Intern")
@@ -87,5 +92,5 @@ const generateTeam = (team) => {
     return html.join("");
 };
 
-// exports function to generate entire page
+// Export function to generate entire page
 module.exports = generateTeam;

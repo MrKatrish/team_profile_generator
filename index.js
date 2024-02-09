@@ -200,9 +200,9 @@ import('inquirer').then(({ default: inquirer }) => {
 }
 
 function gatherTeamInformation(manager) {
-    const teamMembers = []; // Tablica przechowująca informacje o członkach zespołu
+    const teamMembers = []; // Array to store team member information
 
-    // Funkcja rekurencyjna do dodawania kolejnych członków zespołu
+    // Recursive function to add more team members
     function addTeamMember() {
         inquirer.prompt(confirmEmployee)
             .then(answer => {
@@ -214,7 +214,7 @@ function gatherTeamInformation(manager) {
                                     .then(engineerAnswers => {
                                         const engineer = new Engineer(engineerAnswers.engName, engineerAnswers.engId, engineerAnswers.engEmail, engineerAnswers.engGithub);
                                         teamMembers.push(engineer);
-                                        addTeamMember(); // Rekurencyjne dodanie kolejnego członka zespołu
+                                        addTeamMember(); // Recursive addition of another team member
                                     })
                                     .catch(error => {
                                         console.error('Error occurred while adding an engineer:', error);
@@ -224,7 +224,7 @@ function gatherTeamInformation(manager) {
                                     .then(internAnswers => {
                                         const intern = new Intern(internAnswers.internName, internAnswers.internId, internAnswers.internEmail, internAnswers.internSchool);
                                         teamMembers.push(intern);
-                                        addTeamMember(); // Rekurencyjne dodanie kolejnego członka zespołu
+                                        addTeamMember(); // Recursive addition of another team member
                                     })
                                     .catch(error => {
                                         console.error('Error occurred while adding an intern:', error);
@@ -235,9 +235,9 @@ function gatherTeamInformation(manager) {
                             console.error('Error occurred while selecting employee type:', error);
                         });
                 } else {
-                    // Po zakończeniu zbierania informacji o zespole, generujemy stronę HTML
-                    const htmlContent = render([manager, ...teamMembers]); // Zmiana na przekazanie tablicy członków zespołu
-                    fs.mkdirSync(OUTPUT_DIR, { recursive: true }); // Dodanie utworzenia katalogu wyjściowego
+                    // After gathering team information, generate HTML page
+                    const htmlContent = render([manager, ...teamMembers]); // Pass array of team members
+                    fs.mkdirSync(OUTPUT_DIR, { recursive: true }); // Add creation of output directory
                     fs.writeFile(outputPath, htmlContent, err => {
                         if (err) {
                             console.error('Error occurred while generating team page:', err);
@@ -252,7 +252,7 @@ function gatherTeamInformation(manager) {
             });
     }
 
-    addTeamMember(); // Rozpoczęcie procesu dodawania członków zespołu
+    addTeamMember(); // Start adding team members process
 }
 
 
@@ -261,7 +261,7 @@ function start() {
     inquirer.prompt(managerQuestions)
         .then(managerAnswers => {
             const manager = new Manager(managerAnswers.mgrName, managerAnswers.mgrId, managerAnswers.mgrEmail, managerAnswers.mgrOffice);
-            gatherTeamInformation(manager); // Przekazanie informacji o menedżerze do zbierania informacji o zespole
+            gatherTeamInformation(manager); // Pass manager information to gather team information
         })
         .catch(error => {
             console.error('Error occurred while prompting manager:', error);
