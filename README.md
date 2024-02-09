@@ -1,5 +1,9 @@
 # Team Profile Generator
 
+![GitHub](https://img.shields.io/github/license/MrKatrish/team_profile_generator)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/MrKatrish/team_profile_generator)
+![GitHub top language](https://img.shields.io/github/languages/top/MrKatrish/team_profile_generator)
+
 ## Description
 
 The Team Profile Generator is a Node.js command-line application designed to streamline the process of generating a webpage that displays summaries for each member of a software engineering team. This application allows users to input information about team members, including managers, engineers, and interns, and then generates an HTML webpage with their basic info, such as name, email, and GitHub profile. This project aims to facilitate team management by providing quick access to essential details about each team member.
@@ -10,14 +14,16 @@ The Team Profile Generator is a Node.js command-line application designed to str
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
-- [Credits](#credits)
+- [Screenshots and Demo](#screenshots-and-demo)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 - [Technologies Used](#technologies-used)
 
 ## Installation
 
 To install the Team Profile Generator, follow these steps:
 
-1. Clone the repository to your local machine using `git clone https://github.com/MrKatrish/team-profile-generator.git`
+1. Clone the repository to your local machine using `git clone https://github.com/MrKatrish/team_profile_generator.git`
 2. Navigate to the cloned directory and run `npm install` to install all necessary dependencies.
 3. Ensure Node.js is installed on your machine to execute the application.
 
@@ -40,7 +46,15 @@ To use the Team Profile Generator:
 - Customizable styling for the generated HTML
 - Simple and intuitive user interface
 
-## Credits
+## Screenshots and Demo
+
+Insert screenshots and a demo video here to showcase the application's interface or generated HTML pages.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgements
 
 This project was inspired by the need for a convenient tool to create HTML profiles for software engineering teams. Special thanks to:
 
@@ -53,6 +67,6 @@ This project was inspired by the need for a convenient tool to create HTML profi
 - JavaScript
 - Node.js
 - Inquirer.js
-- jest.js
+- Jest.js
 
 Your feedback and contributions are welcome! Please feel free to submit issues or pull requests to the repository.
