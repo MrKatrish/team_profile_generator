@@ -48,7 +48,7 @@ To use the Team Profile Generator:
 
 ## Screenshots and Demo
 
-Insert screenshots and a demo video here to showcase the application's interface or generated HTML pages.
+[DEMO.webm](https://github.com/MrKatrish/team_profile_generator/assets/111653909/176accb2-6f0f-4668-a95d-a45c8fe83448)
 
 ## License
 
