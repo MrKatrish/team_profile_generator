@@ -1,12 +1,4 @@
-// Function to generate the team HTML
-const generateTeam = (team) => {
-    // Check if team is an array
-    if (!Array.isArray(team)) {
-        console.error("Error: 'team' is not an array.");
-        return "";
-    }
 
-    const html = `
         <!DOCTYPE html>
         <html lang="en">
 
@@ -22,6 +14,7 @@ const generateTeam = (team) => {
                 integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
                 crossorigin="anonymous">
             <script src="https://kit.fontawesome.com/c502137733.js"></script>
+            <link rel="stylesheet" href="style.css">
 
             <!-- Font -->
             <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500&display=swap" rel="stylesheet">
@@ -101,57 +94,24 @@ const generateTeam = (team) => {
             </div>
             <div class="container">
                 <div class="team-area card-deck justify-content-center">
-                    ${team.map(employee => generateEmployeeCard(employee)).join('')}
+                    
+        <div class="card w-33 employee-card">
+            <div class="card-header">
+                <h2 class="card-title">a</h2>
+                <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>Manager</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">ID: a</li>
+                    <li class="list-group-item">Email: <a href="mailto:a@a.a">a@a.a</a></li>
+                    <li class="list-group-item">Office number: 1</li>
+                </ul>
+            </div>
+        </div>
+    
                 </div>
             </div>
         </body>
 
         </html>
-    `;
-
-    return html;
-};
-
-// Function to generate HTML for individual employee card
-const generateEmployeeCard = (employee) => {
-    return `
-        <div class="card w-33 employee-card">
-            <div class="card-header">
-                <h2 class="card-title">${employee.getName()}</h2>
-                <h3 class="card-title"><i class="${getIconClass(employee)} mr-2"></i>${employee.getRole()}</h3>
-            </div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item">ID: ${employee.getId()}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
-                    ${getAdditionalInfo(employee)}
-                </ul>
-            </div>
-        </div>
-    `;
-};
-
-// Function to get additional info based on employee type
-const getAdditionalInfo = (employee) => {
-    if (employee.getRole() === 'Manager') {
-        return `<li class="list-group-item">Office number: ${employee.getOfficeNumber()}</li>`;
-    } else if (employee.getRole() === 'Engineer') {
-        return `<li class="list-group-item">GitHub: <a href="https://github.com/${employee.getGithub()}" target="_blank" rel="noopener noreferrer">${employee.getGithub()}</a></li>`;
-    } else if (employee.getRole() === 'Intern') {
-        return `<li class="list-group-item">School: ${employee.getSchool()}</li>`;
-    }
-};
-
-// Function to get icon class based on employee type
-const getIconClass = (employee) => {
-    if (employee.getRole() === 'Manager') {
-        return 'fas fa-mug-hot';
-    } else if (employee.getRole() === 'Engineer') {
-        return 'fas fa-glasses';
-    } else if (employee.getRole() === 'Intern') {
-        return 'fas fa-user-graduate';
-    }
-};
-
-// Export function to generate entire page
-module.exports = generateTeam;
+    
